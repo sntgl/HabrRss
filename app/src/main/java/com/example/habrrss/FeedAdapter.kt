@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.habrrss.databinding.FeedItemBinding
 
-class FeedAdapter: RecyclerView.Adapter<FeedViewHolder>() {
+class FeedAdapter : RecyclerView.Adapter<FeedViewHolder>() {
 
     private var items: List<FeedItem> = emptyList()
 

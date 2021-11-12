@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingTop="6dp"
-    android:paddingBottom="6dp"
     android:paddingStart="12dp"
+    android:paddingTop="6dp"
     android:paddingEnd="12dp"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingBottom="6dp"
     tools:ignore="WebViewLayout">
 
     <TextView
@@ -16,37 +16,34 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="12sp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textStyle="italic"
 
         app:layout_constraintRight_toRightOf="parent"
-        tools:text="Thu, 11 Nov 2021 22:33:55 GMT"
-        android:textStyle="italic"
-        />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Thu, 11 Nov 2021 22:33:55 GMT" />
 
     <TextView
         android:id="@+id/item_author"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/item_date_published"
-        tools:text="Author very long Author very long Author very long Author very long Author very long "
         android:layout_marginEnd="20dp"
-        android:textStyle="bold"
         android:textColor="@color/design_default_color_primary"
-        />
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/item_date_published"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Author very long Author very long Author very long Author very long Author very long " />
 
     <TextView
         android:id="@+id/item_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/item_author"
-        tools:text="Title"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        />
+        tools:text="Title" />
 
     <TextView
         android:id="@+id/item_description"
@@ -55,36 +52,35 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/item_title"
-        tools:text="Description"
-        />
+        tools:text="Description" />
 
     <HorizontalScrollView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/item_description"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:scrollbars="none"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_description">
+
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/item_chip_container"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            app:singleLine="true"
-            >
+            android:layout_height="wrap_content"
+            app:singleLine="true">
+
             <com.google.android.material.chip.Chip
-                app:chipBackgroundColor="@color/design_default_color_primary"
-                android:textColor="@color/design_default_color_on_primary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="тэги или че сюда"
-                />
-            <com.google.android.material.chip.Chip
-                app:chipBackgroundColor="@color/design_default_color_primary"
                 android:textColor="@color/design_default_color_on_primary"
+                app:chipBackgroundColor="@color/design_default_color_primary" />
+
+            <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="тэги или че сюда"
-                />
+                android:textColor="@color/design_default_color_on_primary"
+                app:chipBackgroundColor="@color/design_default_color_primary" />
         </com.google.android.material.chip.ChipGroup>
 
     </HorizontalScrollView>

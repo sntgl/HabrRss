@@ -1,13 +1,13 @@
 package com.example.habrrss
 import android.os.Build
-import android.text.Html
-import androidx.recyclerview.widget.RecyclerView
-import com.example.habrrss.databinding.FeedItemBinding
 import android.text.Editable
-import org.xml.sax.XMLReader
+import android.text.Html
 import android.text.method.LinkMovementMethod
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
+import com.example.habrrss.databinding.FeedItemBinding
 import com.google.android.material.chip.Chip
+import org.xml.sax.XMLReader
 
 class FeedViewHolder(
     private val binding: FeedItemBinding,

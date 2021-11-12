@@ -12,7 +12,7 @@ import java.io.IOException
 import java.io.InputStream
 import java.net.MalformedURLException
 
-//какое-то убожество со stackoverflow
+//какое-то убожество со stackoverflow. работает плохо, но и писал не я
 
 class URLDrawable : BitmapDrawable() {
     var drawable: Drawable? = null

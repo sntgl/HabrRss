@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HabrRss</string>
+    <string name="app_name">Habr Rss</string>
     <string name="retry">Retry…</string>
     <string name="network_error">Network error</string>
     <string name="parsing_error">Parsing error</string>

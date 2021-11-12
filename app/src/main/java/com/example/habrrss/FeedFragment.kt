@@ -1,7 +1,7 @@
 package com.example.habrrss
 
 import android.os.Bundle
-import android.view.*
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -12,12 +12,10 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.habrrss.databinding.FeedFragmentBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class FeedFragment: Fragment(R.layout.feed_fragment) {
-
+class FeedFragment : Fragment(R.layout.feed_fragment) {
 
 
     val binding: FeedFragmentBinding by viewBinding(FeedFragmentBinding::bind)
