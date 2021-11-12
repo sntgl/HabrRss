@@ -4,7 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="12dp"
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp"
+    android:paddingStart="12dp"
+    android:paddingEnd="12dp"
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="WebViewLayout">
 
@@ -63,10 +66,18 @@
         android:scrollbars="none"
         app:layout_constraintRight_toRightOf="parent">
         <com.google.android.material.chip.ChipGroup
+            android:id="@+id/item_chip_container"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             app:singleLine="true"
             >
+            <com.google.android.material.chip.Chip
+                app:chipBackgroundColor="@color/design_default_color_primary"
+                android:textColor="@color/design_default_color_on_primary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="тэги или че сюда"
+                />
             <com.google.android.material.chip.Chip
                 app:chipBackgroundColor="@color/design_default_color_primary"
                 android:textColor="@color/design_default_color_on_primary"
