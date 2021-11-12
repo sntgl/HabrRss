@@ -8,6 +8,7 @@ import java.io.IOException
 import java.io.InputStream
 import kotlin.jvm.Throws
 
+
 class HabrXmlParser {
 
     private val ns: String? = null
@@ -27,16 +28,16 @@ class HabrXmlParser {
     private fun readFeed(parser: XmlPullParser): List<FeedItem> {
         val entries = mutableListOf<FeedItem>()
 
-        parser.require(XmlPullParser.START_TAG, ns, "rss")
+        parser.require(XmlPullParser.START_TAG, ns, FeedItemContract.RSS)
         parser.nextTag()
-        parser.require(XmlPullParser.START_TAG, ns, "channel")
+        parser.require(XmlPullParser.START_TAG, ns, FeedItemContract.CHANNEL)
         while (parser.next() != XmlPullParser.END_TAG) {
             if (parser.eventType != XmlPullParser.START_TAG) {
                 continue
             }
-            if (parser.name == "item") {
+            if (parser.name == FeedItemContract.ITEM) {
                 Timber.d("attempt to read item")
-                entries.add(readEntry(parser))
+                entries.add(readItem(parser))
                 Timber.d("item = ${entries.last()}")
             } else {
                 Timber.d("attempt to skip")
@@ -47,24 +48,66 @@ class HabrXmlParser {
     }
 
     @Throws(XmlPullParserException::class, IOException::class)
-    private fun readEntry(parser: XmlPullParser): FeedItem {
-        parser.require(XmlPullParser.START_TAG, ns, "item")
+    private fun readItem(parser: XmlPullParser): FeedItem {
+        parser.require(XmlPullParser.START_TAG, ns, FeedItemContract.ITEM)
         var title: String? = null
         var description: String? = null
+        var link: String? = null
+        var author: String? = null
+        var date: String? = null
+        val categories = mutableListOf<Category>()
+
+
 //        var link: String? = null
         while (parser.next() != XmlPullParser.END_TAG) {
             if (parser.eventType != XmlPullParser.START_TAG) {
                 continue
             }
             when (parser.name) {
-                "title" -> title = readText(parser, "title")
-                "description" -> description = readText(parser, "description")
+                FeedItemContract.TITLE ->
+                    title = readText(parser, FeedItemContract.TITLE)
+                FeedItemContract.DESCRIPTION ->
+                    description = readText(parser, FeedItemContract.DESCRIPTION)
+                FeedItemContract.LINK ->
+                    link = readText(parser, FeedItemContract.LINK)
+                FeedItemContract.AUTHOR ->
+                    author = readText(parser, FeedItemContract.AUTHOR)
+                FeedItemContract.DATE ->
+                    date = readText(parser, FeedItemContract.DATE)
+                FeedItemContract.CATEGORY ->
+                    categories.add(Category(readText(parser, FeedItemContract.CATEGORY)))
                 else -> skip(parser)
             }
         }
-        val feedItem = FeedItem(title, description)
+        val feedItem = FeedItem(
+            title = title,
+            description = description,
+            link = link,
+            creator = author,
+            date = date,
+            categories = categories
+        )
         return feedItem
     }
+//
+//    @Throws(XmlPullParserException::class, IOException::class)
+//    private fun readCategories(parser: XmlPullParser): List<Category> {
+//        val entries = mutableListOf<Category>()
+//
+//        while (parser.next() != XmlPullParser.END_TAG) {
+//            if (parser.eventType != XmlPullParser.START_TAG) {
+//                continue
+//            }
+//            if (parser.name == FeedItemContract.CATEGORY) {
+//                entries.add(Category(parser.text))
+//            } else {
+//                Timber.d("attempt to skip")
+//                skip(parser)
+//            }
+//        }
+//        return entries
+//    }
+
 
     @Throws(IOException::class, XmlPullParserException::class)
     private fun readText(parser: XmlPullParser, tag: String): String {

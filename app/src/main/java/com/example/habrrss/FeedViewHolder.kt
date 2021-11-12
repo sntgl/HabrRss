@@ -6,6 +6,8 @@ import com.example.habrrss.databinding.FeedItemBinding
 import android.text.Editable
 import org.xml.sax.XMLReader
 import android.text.method.LinkMovementMethod
+import android.text.method.TimeKeyListener
+import timber.log.Timber
 
 class FeedViewHolder(
     private val binding: FeedItemBinding,
@@ -26,6 +28,9 @@ class FeedViewHolder(
             else
                 Html.fromHtml(item.description)
             itemTitle.text = item.title
+            itemAuthor.text = item.creator
+            itemDatePublished.text = item.date
+            Timber.d("${item.categories?.size}")
         }
     }
 }
